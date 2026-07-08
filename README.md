@@ -1,32 +1,48 @@
-# 🚀 Military Vehicle Detector
+# 🚀 AI-Detections - Military Vehicle Detector
 
-A deep learning-based image classification system for detecting military vehicles using **EfficientNet-B0** architecture.  
-The application provides an easy-to-use GUI for real-time classification of five different military vehicle categories.
+A deep learning-based image classification system for detecting military vehicles using **EfficientNet-B0** architecture.
+
+The project includes a trained deep learning model, a graphical user interface (GUI), and a complete training notebook for building and fine-tuning the model.
+
+The application can classify military vehicle images into five different categories in real time.
 
 ---
 
-## 📋 Features
+# 📋 Features
 
-- 🤖 **Deep Learning Classification**  
-  Uses EfficientNet-B0 pretrained on ImageNet and fine-tuned for military vehicle recognition.
+- 🤖 **Deep Learning Classification**
+  
+  Uses **EfficientNet-B0** pretrained on ImageNet and fine-tuned for military vehicle recognition.
 
-- 🖥️ **Interactive GUI**  
-  Built with Tkinter for simple image selection and prediction visualization.
+- 🖥️ **Interactive GUI**
 
-- ⚡ **GPU Support**  
-  Automatically detects and uses CUDA-compatible GPUs for faster inference.
+  A user-friendly interface built with Tkinter for selecting images and displaying prediction results.
 
-- 🎯 **Multi-Class Classification**  
-  Classifies images into five military vehicle categories.
+- ⚡ **GPU Support**
 
-- ⏱️ **Real-Time Prediction**  
-  Provides instant predictions with confidence-based results.
+  Automatically detects CUDA-compatible GPUs for faster model inference.
+
+- 🎯 **Multi-Class Classification**
+
+  Recognizes five different military vehicle categories.
+
+- ⏱️ **Real-Time Prediction**
+
+  Provides instant classification results.
+
+- 📚 **Training Notebook Included**
+
+  The complete model training process is available in:
+
+```
+Model/Military__Vehicle__Detector.ipynb
+```
 
 ---
 
 # 🎯 Classification Categories
 
-The model recognizes the following military vehicles:
+The model recognizes:
 
 | Class ID | Vehicle Type |
 |----------|--------------|
@@ -40,7 +56,7 @@ The model recognizes the following military vehicles:
 
 # 🚀 Installation
 
-## Prerequisites
+## Requirements
 
 - Python 3.8+
 - pip package manager
@@ -48,71 +64,88 @@ The model recognizes the following military vehicles:
 
 ---
 
-## Setup
+# ⚙️ Setup
 
-### 1. Clone the repository
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/Tariq-Zeyad/Military-Object-Detector.git
 
-cd Military-Object-Detector
+cd Ai-Detections
 ```
 
-### 2. Create a virtual environment
+---
+
+## 2. Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate it:
+Activate:
 
-**Windows**
+### Windows
+
 ```bash
 venv\Scripts\activate
 ```
 
-**Linux / macOS**
+### Linux / macOS
+
 ```bash
 source venv/bin/activate
 ```
 
 ---
 
-### 3. Install dependencies
+## 3. Install Dependencies
 
 ```bash
 pip install torch torchvision pillow
 ```
-
-> Note: Tkinter is included by default with most Python installations.
-
----
-
-### 4. Prepare the model
-
-Place the trained model file:
-
-```
-best_model.pth
-```
-
-inside the project root directory.
-
-The model must be compatible with the EfficientNet-B0 architecture.
 
 ---
 
 # 📁 Project Structure
 
 ```
-Military-Object-Detector/
+Ai-Detections/
 │
-├── main.py              # Application entry point
-├── model.py             # Neural network model
-├── ui.py                # Tkinter GUI interface
-├── config.py            # Configuration settings
-├── best_model.pth       # Trained model weights
-└── README.md            # Documentation
+├── app.py                         # Application entry point
+├── model.py                        # Neural network architecture
+├── ui.py                           # Tkinter GUI
+├── config.py                       # Configuration parameters
+│
+├── Model/
+│   ├── Military__Vehicle__Detector.ipynb
+│── best_model.pth              # Trained model weights
+│
+└── README.md
+```
+
+---
+
+# 🧠 Model Training
+
+The training process was performed using Jupyter Notebook:
+
+```
+Model/Military__Vehicle__Detector.ipynb
+```
+
+The notebook includes:
+
+- Dataset preparation
+- Image preprocessing
+- Data augmentation
+- EfficientNet-B0 fine-tuning
+- Model evaluation
+- Saving the best model
+
+The final trained model is saved as:
+
+```
+best_model.pth
 ```
 
 ---
@@ -122,17 +155,17 @@ Military-Object-Detector/
 Run the application:
 
 ```bash
-python app.py
+python main.py
 ```
 
 ---
 
 ## Using the GUI
 
-1. Click **"Open Image"**.
-2. Select an image file.
+1. Click **Open Image**.
+2. Select an image.
 3. The system processes the image.
-4. The predicted military vehicle category appears below the image.
+4. The predicted military vehicle category is displayed.
 
 Supported formats:
 
@@ -144,7 +177,13 @@ Supported formats:
 
 # 🔧 Configuration
 
-The `config.py` file contains adjustable parameters:
+The model classes and settings are defined in:
+
+```
+config.py
+```
+
+Example:
 
 ```python
 CLASS_NAMES = {
@@ -164,10 +203,13 @@ IMAGE_SIZE = 224
 
 # 🏗️ Technical Architecture
 
-## Model Architecture
+## Model
 
-**Base Model:**
-- EfficientNet-B0
+**Architecture:**
+
+```
+EfficientNet-B0
+```
 
 **Classifier Head:**
 
@@ -185,8 +227,6 @@ Linear Layer
 
 **Normalization:**
 
-ImageNet normalization:
-
 ```python
 mean = [0.485, 0.456, 0.406]
 
@@ -195,24 +235,24 @@ std = [0.229, 0.224, 0.225]
 
 ---
 
-# 🔄 Processing Pipeline
+# 🔄 Inference Pipeline
 
-1. Load image using PIL
-2. Convert image to RGB format
-3. Resize image to 224×224
-4. Convert image to tensor
-5. Apply ImageNet normalization
-6. Run inference using CPU/GPU
-7. Extract highest probability class
+1. Load image using PIL.
+2. Convert image to RGB.
+3. Resize image to 224×224.
+4. Convert image into Tensor.
+5. Apply ImageNet normalization.
+6. Run inference using CPU/GPU.
+7. Return the predicted class.
 
 ---
 
 # 📊 Performance Optimization
 
-- ✅ Single-image inference optimized for real-time prediction
-- ✅ Efficient tensor operations using `torch.no_grad()`
-- ✅ Automatic CPU/GPU device selection
-- ✅ Memory-efficient image handling with PIL
+- ✅ Optimized single-image inference.
+- ✅ Uses `torch.no_grad()` for efficient prediction.
+- ✅ Automatic CPU/GPU selection.
+- ✅ Memory-efficient image processing.
 
 ---
 
@@ -222,26 +262,26 @@ Contributions are welcome.
 
 Steps:
 
-1. Fork the repository
-2. Create a feature branch:
+1. Fork the repository.
+2. Create a new branch:
 
 ```bash
-git checkout -b feature/AmazingFeature
+git checkout -b feature/NewFeature
 ```
 
 3. Commit changes:
 
 ```bash
-git commit -m "Add some AmazingFeature"
+git commit -m "Add new feature"
 ```
 
-4. Push your branch:
+4. Push changes:
 
 ```bash
-git push origin feature/AmazingFeature
+git push origin feature/NewFeature
 ```
 
-5. Open a Pull Request
+5. Open a Pull Request.
 
 ---
 
@@ -253,9 +293,9 @@ This project is licensed under the MIT License.
 
 # 🙏 Acknowledgments
 
-- EfficientNet architecture by Google Research
-- PyTorch deep learning framework
-- Tkinter GUI framework
+- EfficientNet architecture by Google Research.
+- PyTorch deep learning framework.
+- Tkinter GUI framework.
 
 ---
 
@@ -264,11 +304,13 @@ This project is licensed under the MIT License.
 **Tariq Zeyad**
 
 Email:
+
 ```
 tariqkashan0@gmail.com
 ```
 
 GitHub:
+
 ```
 https://github.com/Tariq-Zeyad
 ```
